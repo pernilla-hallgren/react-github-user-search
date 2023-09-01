@@ -1,21 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import CustomInput from './common/CustomInput';
 
 interface SearchFormProps {
-    value: string;
+    onSubmit: () => void;
 }
 
-const SearchForm: React.FC<SearchFormProps> = ({  }) => {
+const SearchForm: React.FC<SearchFormProps> = ({ onSubmit }) => {
     const [searchValue, setSearchValue] = useState('');
+
+    const handleSearchChange = (value: string) => {
+        setSearchValue(value)
+    }
+
+    console.log({searchValue});
+
+    const handleSearchSubmit = () => {
+        onSubmit()
+    }
 
     return (
         <div className='search-form-container'>
             <div>
                 <CustomInput 
-                    placeholder={''} 
-                    value={''} 
-                    onChange={() => console.log("onChange")} 
-                    onSubmit={() => console.log("onSubmit")} 
+                    placeholder='Enter GitHub username' 
+                    value={searchValue} 
+                    onChange={handleSearchChange} 
+                    onSubmit={handleSearchSubmit} 
                 />
             </div>
         </div>
