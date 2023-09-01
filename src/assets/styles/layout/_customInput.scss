@@ -1,0 +1,34 @@
+@use "../util" as m;
+
+.input-wrapper {
+    position: relative;
+
+    .input-field {
+        padding-right: 2rem; 
+        border: 1px solid var(--light-navy);
+        padding: 15px 30px;
+        border-radius: 14px;
+        background-color: var( --background-color);
+        box-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.25);
+        font-size: var(--fz-sm);
+        color: var(--light-navy);
+        width: 80%;
+
+        @include m.sm {
+            width: 60%;
+        }
+
+        @include m.lg {
+            width: 40%;
+        }
+    }
+
+    .search-icon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--light-navy);
+        cursor: pointer;
+        padding: 10px;
+    }
+}
