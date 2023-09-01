@@ -1,0 +1,31 @@
+h1, 
+h2, 
+h3 {
+    line-height: 1.1;
+    color: var(--text-opacity);
+}
+
+h1 {
+    font-size: var(--fz-lg-heading);
+    font-family: "OpenSans-Bold", sans-serif;
+}
+
+h2 {
+    font-size: var(--fz-xxl);
+}
+
+h3 {
+    font-size: var(--fz-lg);
+}
+
+p {
+    font-size: var( --fz-sm);
+    color: var(--text-opacity);
+    font-family: "OpenSans-Light", sans-serif;
+}
+
+button {
+    font-size: var( --fz-sm);
+    font-family: "OpenSans-Light", sans-serif;
+}
+  
