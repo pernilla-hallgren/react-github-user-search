@@ -8,7 +8,7 @@ const App = () => {
 	};
 
 	return (
-		<main>
+		<main className='main-wrapper'>
 			<h1>Search for GitHub Users</h1>
 			<SearchForm onSubmit={handleSearchSubmit} />
 		</main>
