@@ -11,24 +11,15 @@ interface CustomInputProps {
 
 const CustomInput: React.FC<CustomInputProps> = ({ placeholder, value, onChange, onSubmit }) => {
 
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement>)=> {
-        onChange(event.target.value);
-    }
-
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        onSubmit();
-    }
-
     return (
-        <form onSubmit={handleSubmit}>
+        <form>
             <div className='input-wrapper'>
                 <input 
                     className='input-field'
                     type='text'
                     value={value}
                     placeholder={placeholder}
-                    onChange={handleInputChange}
+                    onChange={event => onChange(event.target.value)}
                 /> 
                 <FontAwesomeIcon
                     icon={faSearch}
