@@ -44,7 +44,9 @@ const SearchForm = () => {
                 </div>
             </div>
             <div className='card-container'>
-
+                {userData && (
+                    <Card user={userData} />
+                )}
             </div>
         </div>
     );
