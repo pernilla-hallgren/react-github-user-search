@@ -1,3 +1,12 @@
 .search-form-container {
     margin: 50px 0px;
 }
+
+.error-msg {
+    color: red;
+    font-weight: 700;
+}
+
+.loading-text {
+    color: var(--green);
+}

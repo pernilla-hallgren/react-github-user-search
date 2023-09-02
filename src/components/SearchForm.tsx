@@ -7,29 +7,22 @@ const SearchForm = () => {
     const [searchValue, setSearchValue] = useState('');
     const [userData, setUserData] = useState<UserData | null>();
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState<Error | null>(null);
+    const [error, setError] = useState(null);
     
     const handleSearchSubmit = async () => {
         setIsLoading(true);
         setError(null);
-        console.log('click', searchValue);
-        try {
-            const fetchedUserData = await getUserData(searchValue);
-
-            if (fetchedUserData !== null) {
-                setUserData(fetchedUserData);
-            } else {
-                setError(new Error('User not found'));
-            }
-        } catch (error: any) {
-            console.error('Error fetching data:', error);
-            setError(error);
-        } finally {
-            setIsLoading(false);
+        const fetchedUserData = await getUserData(searchValue);
+        if (!fetchedUserData.message) {
+            setUserData(fetchedUserData);
+        } else {
+            setError(fetchedUserData.response.data.message);
         }
+        setIsLoading(false);
+        setSearchValue('');
     };
 
-    console.log({userData});
+    console.log(error);
 
     return (
         <div>        
@@ -42,6 +35,10 @@ const SearchForm = () => {
                         onSubmit={handleSearchSubmit} 
                     />
                 </div>
+            </div>
+            <div>
+                {isLoading && <h3 className='loading-text'>Loading...</h3>}
+                {error && <p className='error-msg'>User {error}</p>}
             </div>
             <div className='card-container'>
                 {userData && (
