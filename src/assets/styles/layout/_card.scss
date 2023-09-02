@@ -46,6 +46,16 @@
                 margin-bottom: 5px;
             }
 
+            .card-url {
+                cursor: pointer;
+                color: var(--light-navy);
+                margin: 12px 0px;
+
+                &:hover {
+                    color: var(--text-opacity);
+                }
+            }
+
             .card-bio-button {
                 border: 1.5px solid white;
                 padding: 15px 40px;

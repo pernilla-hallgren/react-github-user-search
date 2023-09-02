@@ -24,6 +24,9 @@ const Card = ({user}: {user: UserData}) => {
                 <div className='card-content'>
                     <h2 className='card-name'>{user.name}</h2>
                     <p className='card-username'>{user.login}</p>
+                    <div>
+                        <a href={user.html_url} target='_blank' rel='noreferrer' className='card-url'>{user.html_url}</a>
+                    </div>
                     {user.bio !== null && user.bio !== '' ? (
                         <button className='card-bio-button' onClick={() => handleOpenModal(user)}>
                             View Bio

@@ -24,6 +24,12 @@ p {
     font-family: "OpenSans-Light", sans-serif;
 }
 
+a {
+    font-size: var( --fz-sm);
+    color: var(--text-opacity);
+    font-family: "OpenSans-Light", sans-serif;
+}
+
 button {
     font-size: var( --fz-sm);
     font-family: "OpenSans-Light", sans-serif;
