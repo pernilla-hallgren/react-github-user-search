@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { UserData } from '../../services/api';
+import Modal from './Modal';
 
 const Card = ({user}: {user: UserData}) => {
-    const [selectedUser, setSelectedUser] = useState<UserData>();
+    const [selectedUser, setSelectedUser] = useState<UserData  | null>(null);
 
     const handleOpenModal = (user: UserData) => {
         setSelectedUser(user)
@@ -10,9 +11,9 @@ const Card = ({user}: {user: UserData}) => {
         
     }
 
-    // const handleCloseModal = () => {
-    //     setSelectedUser(null);
-    // }
+    const handleCloseModal = () => {
+        setSelectedUser(null);
+    }
 
     return (
         <div> 
@@ -44,6 +45,12 @@ const Card = ({user}: {user: UserData}) => {
                     </div>
                 </div>
             </div>
+            {selectedUser && (
+                <Modal onClose={handleCloseModal}>
+                    <h2 className='card-name'>{selectedUser.name}</h2>
+                    <p className='card-bio'>{selectedUser.bio}</p>
+                </Modal>
+            )}
         </div>  
     );
 };
