@@ -7,8 +7,6 @@ const Card = ({user}: {user: UserData}) => {
 
     const handleOpenModal = (user: UserData) => {
         setSelectedUser(user)
-        console.log({user});
-        
     }
 
     const handleCloseModal = () => {

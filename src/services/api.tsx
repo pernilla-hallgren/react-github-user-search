@@ -44,10 +44,8 @@ const getUserData = async (username: string) => {
                 'Authorization': `Bearer ${githubAccessToken}`,
             },
         });
-        console.log('RESPONSE===>>>', response.data);
         return response.data;
     } catch (error: any) {
-        console.log(error.message);
         return error;
     }
 };
