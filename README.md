@@ -1,46 +1,54 @@
-# Getting Started with Create React App
+# GitHUb User Search
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Instructions
+Build a GitHub User Search application using React.js that allows users to search for GitHub users and display their profile information using the GitHub API.
 
-## Available Scripts
+## Requirements
 
-In the project directory, you can run:
+- Create an input field where users can enter a GitHub username.
+- Upon submitting the search form, fetch user data from the GitHub API and display the user's profile information.
+- Display the following user information:
+    Avatar (profile picture)
+    Username
+    Name
+    Bio
+    Number of followers
+    Number of repositories
+- Use the GitHub API to fetch the data. You can use the following endpoint:
+    https://api.github.com/users/{username}
+- Display an error message if the user is not found or if there's an issue with the API request.
+- The UI should be responsive and visually appealing.
 
-### `npm start`
+## 🛠 Installation & Set Up
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Install and use the correct version of Node check .nvmrc file 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+   ```sh
+   nvm install
+   ```
 
-### `npm test`
+2. Install dependencies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```sh
+   npm install
+   ```
 
-### `npm run build`
+3. Add you own Github User Token to make request to the API. Create a .env file in the root and add the following:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```sh
+   REACT_APP_GITHUB_ACCESS_TOKEN=yourtoken
+   ```
+   
+4. Start the development server
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```sh
+   npm start
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🚀 Building and Running for Production
 
-### `npm run eject`
+1. Generate a full static production build
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+   ```sh
+   npm run build
+   ```
