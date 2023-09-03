@@ -1,3 +1,5 @@
+@use "../util" as m;
+
 h1, 
 h2, 
 h3 {
@@ -6,12 +8,20 @@ h3 {
 }
 
 h1 {
-    font-size: var(--fz-lg-heading);
+    font-size: var(--fz-xxl);
     font-family: "OpenSans-Bold", sans-serif;
+
+	@include m.md {
+		font-size: var(--fz-lg-heading)
+	}
 }
 
 h2 {
-    font-size: var(--fz-xxl);
+    font-size: var(--fz-lg);
+
+	@include m.md {
+		font-size: var(--fz-xxl)
+	}
 }
 
 h3 {
