@@ -7,22 +7,26 @@ const SearchForm = () => {
     const [searchValue, setSearchValue] = useState('');
     const [userData, setUserData] = useState<UserData | null>();
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [userNotFoundError, setUserNotFound] = useState(null);
+    const [unexpectedError, setUnexpectedError] = useState(null);
     
     const handleSearchSubmit = async () => {
+        setUserData(null);
         setIsLoading(true);
-        setError(null);
+        setUserNotFound(null);
+        setUnexpectedError(null);
+        
         const fetchedUserData = await getUserData(searchValue);
         if (!fetchedUserData.message) {
             setUserData(fetchedUserData);
+        } else if (fetchedUserData.response.status === 404) {
+            setUserNotFound(fetchedUserData.response.data.message);
         } else {
-            setError(fetchedUserData.response.data.message);
+            setUnexpectedError(fetchedUserData.response.data.message)
         }
         setIsLoading(false);
         setSearchValue('');
     };
-
-    console.log(error);
 
     return (
         <div>        
@@ -38,7 +42,8 @@ const SearchForm = () => {
             </div>
             <div>
                 {isLoading && <h3 className='loading-text'>Loading...</h3>}
-                {error && <p className='error-msg'>User {error}</p>}
+                {userNotFoundError && <p className='error-msg'>User {userNotFoundError}</p>}
+                {unexpectedError && <p className='error-msg'>{unexpectedError}</p>}
             </div>
             <div className='card-container'>
                 {userData && (
