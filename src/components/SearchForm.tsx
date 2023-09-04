@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import CustomInput from './common/CustomInput';
 import Card from './common/Card';
 import { getUserData, UserData } from '../services/api';
@@ -9,8 +9,13 @@ const SearchForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [userNotFoundError, setUserNotFound] = useState(null);
     const [unexpectedError, setUnexpectedError] = useState(null);
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setSearchValue(e.target.value)
+    }
     
-    const handleSearchSubmit = async () => {
+    const handleSearchSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         setUserData(null);
         setIsLoading(true);
         setUserNotFound(null);
@@ -35,7 +40,7 @@ const SearchForm = () => {
                     <CustomInput 
                         placeholder='Enter GitHub username' 
                         value={searchValue} 
-                        onChange={value => setSearchValue(value)} 
+                        onChange={handleChange} 
                         onSubmit={handleSearchSubmit} 
                     />
                 </div>
