@@ -1,4 +1,4 @@
-import { FC, ReactNode }from 'react';
+import { ReactNode }from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
@@ -7,7 +7,7 @@ interface ModalProps {
   onClose: () => void;
 }
  
-const Modal: FC<ModalProps> = ({ children, onClose }) => {
+const Modal = ({ children, onClose }: ModalProps) => {
   return (
     <div className='modal-overlay'>
         <div className='modal-content'>

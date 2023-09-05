@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent } from 'react';
+import { ChangeEvent, FormEvent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,7 +9,7 @@ interface CustomInputProps {
     onSubmit: (e: FormEvent<HTMLFormElement>) => void;
 }
 
-const CustomInput: React.FC<CustomInputProps> = ({ placeholder, value, onChange, onSubmit }) => {
+const CustomInput = ({ placeholder, value, onChange, onSubmit }: CustomInputProps) => {
 
     return (
         <form onSubmit={onSubmit}>
