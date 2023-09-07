@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -10,6 +10,12 @@ interface CustomInputProps {
 }
 
 const CustomInput = ({ placeholder, value, onChange, onSubmit }: CustomInputProps) => {
+    const inputRef = useRef<HTMLInputElement | null>(null);
+
+    useEffect(() => {
+        inputRef.current?.focus();
+    }, [])
+
 
     return (
         <form onSubmit={onSubmit}>
@@ -20,6 +26,7 @@ const CustomInput = ({ placeholder, value, onChange, onSubmit }: CustomInputProp
                     value={value}
                     placeholder={placeholder}
                     onChange={onChange}
+                    ref={inputRef}
                 /> 
                 <button className='input-button'>
                     <FontAwesomeIcon
