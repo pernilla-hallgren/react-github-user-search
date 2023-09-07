@@ -1,35 +1,19 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import CustomInput from './common/CustomInput';
 import Card from './common/Card';
-import { getUserData, UserData } from '../services/api';
+import useAxios from '../hooks/useAxios';
 
 const SearchForm = () => {
     const [searchValue, setSearchValue] = useState('');
-    const [userData, setUserData] = useState<UserData | null>();
-    const [isLoading, setIsLoading] = useState(false);
-    const [userNotFoundError, setUserNotFound] = useState(null);
-    const [unexpectedError, setUnexpectedError] = useState(null);
+    const { data, isLoading, error, errorMsg, errorStatus, getUserData } = useAxios(searchValue)
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.target.value)
     }
-    
+
     const handleSearchSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setUserData(null);
-        setIsLoading(true);
-        setUserNotFound(null);
-        setUnexpectedError(null);
-        
-        const fetchedUserData = await getUserData(searchValue);
-        if (!fetchedUserData.message) {
-            setUserData(fetchedUserData);
-        } else if (fetchedUserData.response.status === 404) {
-            setUserNotFound(fetchedUserData.response.data.message);
-        } else {
-            setUnexpectedError(fetchedUserData.response.data.message)
-        }
-        setIsLoading(false);
+        await getUserData();
         setSearchValue('');
     };
 
@@ -47,12 +31,15 @@ const SearchForm = () => {
             </div>
             <div>
                 {isLoading && <h3 className='loading-text'>Loading...</h3>}
-                {userNotFoundError && <p className='error-msg'>User {userNotFoundError}</p>}
-                {unexpectedError && <p className='error-msg'>{unexpectedError}</p>}
+                {errorStatus === 404 && errorMsg && <p className='error-msg'>User {errorMsg}</p>}
+                {errorStatus === 500 && <p className='error-msg'>Internal server error</p>}
+                {errorStatus !== 404 && errorStatus !== 500 && error && (
+                    <p className='error-msg'>An error occurred: {errorMsg}</p>
+                )}
             </div>
             <div className='card-container'>
-                {userData && (
-                    <Card user={userData} />
+                {data && (
+                    <Card user={data} />
                 )}
             </div>
         </div>
